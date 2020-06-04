@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">   
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+
+ 
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>  
+<!--data table-->
+ <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+ <!--data char graficas-->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+ 
+
+
+
+
+</head>
+<body>
+
+<script>
+let miJSON =[{PAN_IID_PANTALLA: "1",PAN_VNOMBRE:"Call Center",PAN_IID_PANTALLA_PADRE:"",PAN_INIVEL:"1",PAN_IORDEN:"1",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "2",PAN_VNOMBRE:"Call Manual",PAN_IID_PANTALLA_PADRE:"1",PAN_INIVEL:"2",PAN_IORDEN:"1",PAN_VRUTA:"CallManual",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "3",PAN_VNOMBRE:"Calle",PAN_IID_PANTALLA_PADRE:"",PAN_INIVEL:"1",PAN_IORDEN:"2",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "4",PAN_VNOMBRE:"Administración de estatus",PAN_IID_PANTALLA_PADRE:"3",PAN_INIVEL:"2",PAN_IORDEN:"1",PAN_VRUTA:"AdministracionEstatus",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "5",PAN_VNOMBRE:"Consulta de nuevo domicilios",PAN_IID_PANTALLA_PADRE:"3",PAN_INIVEL:"2",PAN_IORDEN:"2",PAN_VRUTA:"Consultanuevodomicilios",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "6",PAN_VNOMBRE:"Consulta de nuevo teléfono",PAN_IID_PANTALLA_PADRE:"3",PAN_INIVEL:"2",PAN_IORDEN:"3",PAN_VRUTA:"Consultanuevotelefono",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "7",PAN_VNOMBRE:"Consulta de visitas",PAN_IID_PANTALLA_PADRE:"3",PAN_INIVEL:"2",PAN_IORDEN:"4",PAN_VRUTA:"consultaVisitas",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "8",PAN_VNOMBRE:"DO-02",PAN_IID_PANTALLA_PADRE:"3",PAN_INIVEL:"2",PAN_IORDEN:"5",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "9",PAN_VNOMBRE:"Alta DO-02",PAN_IID_PANTALLA_PADRE:"8",PAN_INIVEL:"3",PAN_IORDEN:"1",PAN_VRUTA:"Alta_DO-02",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "10",PAN_VNOMBRE:"Consulta DO-02",PAN_IID_PANTALLA_PADRE:"8",PAN_INIVEL:"3",PAN_IORDEN:"2",PAN_VRUTA:"Consulta_DO-02",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "11",PAN_VNOMBRE:"Cambios DO-02",PAN_IID_PANTALLA_PADRE:"8",PAN_INIVEL:"3",PAN_IORDEN:"3",PAN_VRUTA:"Cambios_DO-02",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "12",PAN_VNOMBRE:"Desbloqueo de Folios",PAN_IID_PANTALLA_PADRE:"8",PAN_INIVEL:"3",PAN_IORDEN:"4",PAN_VRUTA:"Desbloqueo_Folios",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "13",PAN_VNOMBRE:"Información del contacto",PAN_IID_PANTALLA_PADRE:"3",PAN_INIVEL:"2",PAN_IORDEN:"6",PAN_VRUTA:"informaciondelsolicitante",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "14",PAN_VNOMBRE:"Reingeniería",PAN_IID_PANTALLA_PADRE:"3",PAN_INIVEL:"2",PAN_IORDEN:"7",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "15",PAN_VNOMBRE:"Asignación asesor zona",PAN_IID_PANTALLA_PADRE:"14",PAN_INIVEL:"3",PAN_IORDEN:"1",PAN_VRUTA:"Calle/Reingenieria/Asig_Zona",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "16",PAN_VNOMBRE:"Asignación de cuentas",PAN_IID_PANTALLA_PADRE:"14",PAN_INIVEL:"3",PAN_IORDEN:"2",PAN_VRUTA:"Calle/Reingenieria/Asig_Cuentas",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "17",PAN_VNOMBRE:"Carga Inicial",PAN_IID_PANTALLA_PADRE:"14",PAN_INIVEL:"3",PAN_IORDEN:"3",PAN_VRUTA:"Calle/Reingenieria/Carga_Inicial",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "18",PAN_VNOMBRE:"Goteo manual",PAN_IID_PANTALLA_PADRE:"14",PAN_INIVEL:"3",PAN_IORDEN:"4",PAN_VRUTA:"Calle/Reingenieria/Goteo_Manual",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "19",PAN_VNOMBRE:"Transferencia a otro Asesor",PAN_IID_PANTALLA_PADRE:"14",PAN_INIVEL:"3",PAN_IORDEN:"5",PAN_VRUTA:"Calle/Reingenieria/Transferencia",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "20",PAN_VNOMBRE:"Resultados de visitas",PAN_IID_PANTALLA_PADRE:"3",PAN_INIVEL:"2",PAN_IORDEN:"7",PAN_VRUTA:"ResultadoVisitas",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "21",PAN_VNOMBRE:"Resultados de llamadas",PAN_IID_PANTALLA_PADRE:"3",PAN_INIVEL:"2",PAN_IORDEN:"8",PAN_VRUTA:"ResultadoLlamadas",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "22",PAN_VNOMBRE:"Legal",PAN_IID_PANTALLA_PADRE:"",PAN_INIVEL:"1",PAN_IORDEN:"3",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "23",PAN_VNOMBRE:"Administración de estatus",PAN_IID_PANTALLA_PADRE:"22",PAN_INIVEL:"2",PAN_IORDEN:"1",PAN_VRUTA:"AdministracionEstatus",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "24",PAN_VNOMBRE:"Certificación contable",PAN_IID_PANTALLA_PADRE:"22",PAN_INIVEL:"2",PAN_IORDEN:"2",PAN_VRUTA:"CertificacionContable",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "25",PAN_VNOMBRE:"Clasificación y asignación de cuentas",PAN_IID_PANTALLA_PADRE:"22",PAN_INIVEL:"2",PAN_IORDEN:"3",PAN_VRUTA:"ClasificacionCDI",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "26",PAN_VNOMBRE:"Demandas",PAN_IID_PANTALLA_PADRE:"22",PAN_INIVEL:"2",PAN_IORDEN:"4",PAN_VRUTA:"Demandas",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "27",PAN_VNOMBRE:"Desbloquedo de demandas",PAN_IID_PANTALLA_PADRE:"22",PAN_INIVEL:"2",PAN_IORDEN:"5",PAN_VRUTA:"DesbloqueoDemandas",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "28",PAN_VNOMBRE:"DO-02",PAN_IID_PANTALLA_PADRE:"22",PAN_INIVEL:"2",PAN_IORDEN:"6",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "29",PAN_VNOMBRE:"Alta DO-02",PAN_IID_PANTALLA_PADRE:"28",PAN_INIVEL:"3",PAN_IORDEN:"1",PAN_VRUTA:"LegalAlta_DO_02",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "30",PAN_VNOMBRE:"Consulta DO-02",PAN_IID_PANTALLA_PADRE:"28",PAN_INIVEL:"3",PAN_IORDEN:"2",PAN_VRUTA:"LegalConsulta_DO_02",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "31",PAN_VNOMBRE:"Cambios DO-02",PAN_IID_PANTALLA_PADRE:"28",PAN_INIVEL:"3",PAN_IORDEN:"3",PAN_VRUTA:"LegalCambios_DO_02",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "32",PAN_VNOMBRE:"Elaboración de ruta",PAN_IID_PANTALLA_PADRE:"22",PAN_INIVEL:"2",PAN_IORDEN:"7",PAN_VRUTA:"ElaboracionRuta",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "33",PAN_VNOMBRE:"Información del contacto",PAN_IID_PANTALLA_PADRE:"22",PAN_INIVEL:"2",PAN_IORDEN:"8",PAN_VRUTA:"informaciondelsolicitante",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "34",PAN_VNOMBRE:"Reingeniería",PAN_IID_PANTALLA_PADRE:"22",PAN_INIVEL:"2",PAN_IORDEN:"9",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "35",PAN_VNOMBRE:"Asignación asesor zona",PAN_IID_PANTALLA_PADRE:"34",PAN_INIVEL:"3",PAN_IORDEN:"1",PAN_VRUTA:"Legal/Reingenieria/Asig_Zona",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "36",PAN_VNOMBRE:"Asignación de cuentas",PAN_IID_PANTALLA_PADRE:"34",PAN_INIVEL:"3",PAN_IORDEN:"2",PAN_VRUTA:"Legal/Reingenieria/Asig_Cuentas",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "37",PAN_VNOMBRE:"Carga Inicial",PAN_IID_PANTALLA_PADRE:"34",PAN_INIVEL:"3",PAN_IORDEN:"3",PAN_VRUTA:"Legal/Reingenieria/Carga_Inicial",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "38",PAN_VNOMBRE:"Goteo manual",PAN_IID_PANTALLA_PADRE:"34",PAN_INIVEL:"3",PAN_IORDEN:"4",PAN_VRUTA:"Legal/Reingenieria/Goteo_Manual",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "39",PAN_VNOMBRE:"Transferencia a otro Asesor",PAN_IID_PANTALLA_PADRE:"34",PAN_INIVEL:"3",PAN_IORDEN:"5",PAN_VRUTA:"Legal/Reingenieria/Transferencia",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "40",PAN_VNOMBRE:"Resultados de visitas",PAN_IID_PANTALLA_PADRE:"22",PAN_INIVEL:"2",PAN_IORDEN:"10",PAN_VRUTA:"Legal/ResultadoVisitas",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "41",PAN_VNOMBRE:"Reportes",PAN_IID_PANTALLA_PADRE:"",PAN_INIVEL:"1",PAN_IORDEN:"4",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "49",PAN_VNOMBRE:"Impresion de avisos",PAN_IID_PANTALLA_PADRE:"3",PAN_INIVEL:"2",PAN_IORDEN:"2",PAN_VRUTA:"ImpresionAvisosCalle",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "52",PAN_VNOMBRE:"Call center",PAN_IID_PANTALLA_PADRE:"41",PAN_INIVEL:"2",PAN_IORDEN:"1",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "53",PAN_VNOMBRE:"Calle",PAN_IID_PANTALLA_PADRE:"41",PAN_INIVEL:"2",PAN_IORDEN:"2",PAN_VRUTA:"ReportesCalle",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "54",PAN_VNOMBRE:"Legal",PAN_IID_PANTALLA_PADRE:"41",PAN_INIVEL:"2",PAN_IORDEN:"3",PAN_VRUTA:"reporteLegal",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "55",PAN_VNOMBRE:"Administración",PAN_IID_PANTALLA_PADRE:"",PAN_INIVEL:"1",PAN_IORDEN:"5",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "56",PAN_VNOMBRE:"Equivalencia jefatura vs supervisor/asociado",PAN_IID_PANTALLA_PADRE:"55",PAN_INIVEL:"2",PAN_IORDEN:"1",PAN_VRUTA:"EquivalenciaJefaturaSupervisorvsAsociado",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "57",PAN_VNOMBRE:"Equivalencia supervisor vs asociado",PAN_IID_PANTALLA_PADRE:"55",PAN_INIVEL:"2",PAN_IORDEN:"2",PAN_VRUTA:"Esupervisorvsasociado",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "58",PAN_VNOMBRE:"Zonificación",PAN_IID_PANTALLA_PADRE:"3",PAN_INIVEL:"2",PAN_IORDEN:"3",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "59",PAN_VNOMBRE:"Agregar Zonificación",PAN_IID_PANTALLA_PADRE:"58",PAN_INIVEL:"3",PAN_IORDEN:"1",PAN_VRUTA:"ZonificacionAgregar",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "60",PAN_VNOMBRE:"Modificar Zonificación",PAN_IID_PANTALLA_PADRE:"58",PAN_INIVEL:"3",PAN_IORDEN:"2",PAN_VRUTA:"ZonificacionModificar",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "61",PAN_VNOMBRE:"Borrar Zonificación",PAN_IID_PANTALLA_PADRE:"58",PAN_INIVEL:"3",PAN_IORDEN:"3",PAN_VRUTA:"ZonificacionBorrar",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "62",PAN_VNOMBRE:"Carga Archivos",PAN_IID_PANTALLA_PADRE:"",PAN_INIVEL:"1",PAN_IORDEN:"6",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "63",PAN_VNOMBRE:"Registro gestiones",PAN_IID_PANTALLA_PADRE:"62",PAN_INIVEL:"2",PAN_IORDEN:"1",PAN_VRUTA:"RegistroGestiones",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "64",PAN_VNOMBRE:"Masiva call center",PAN_IID_PANTALLA_PADRE:"62",PAN_INIVEL:"2",PAN_IORDEN:"2",PAN_VRUTA:"MasivaCallCenter",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "65",PAN_VNOMBRE:"Masiva calle",PAN_IID_PANTALLA_PADRE:"62",PAN_INIVEL:"2",PAN_IORDEN:"3",PAN_VRUTA:"MasivaCalle",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "66",PAN_VNOMBRE:"Masiva legal",PAN_IID_PANTALLA_PADRE:"62",PAN_INIVEL:"2",PAN_IORDEN:"4",PAN_VRUTA:"MasivaDespachos",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "67",PAN_VNOMBRE:"Panico",PAN_IID_PANTALLA_PADRE:"",PAN_INIVEL:"1",PAN_IORDEN:"7",PAN_VRUTA:"Panico",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "72",PAN_VNOMBRE:"Catalogos",PAN_IID_PANTALLA_PADRE:"",PAN_INIVEL:"1",PAN_IORDEN:"8",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "73",PAN_VNOMBRE:"Balanceo",PAN_IID_PANTALLA_PADRE:"3",PAN_INIVEL:"2",PAN_IORDEN:"12",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "74",PAN_VNOMBRE:"Visitadores",PAN_IID_PANTALLA_PADRE:"73",PAN_INIVEL:"3",PAN_IORDEN:"1",PAN_VRUTA:"BalanceoVisitadores",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "75",PAN_VNOMBRE:"Orden de gestor",PAN_IID_PANTALLA_PADRE:"73",PAN_INIVEL:"3",PAN_IORDEN:"2",PAN_VRUTA:"BalanceoOrden_gestor",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "76",PAN_VNOMBRE:"Asesores colonia",PAN_IID_PANTALLA_PADRE:"73",PAN_INIVEL:"3",PAN_IORDEN:"3",PAN_VRUTA:"BalanceoAsesorescolonia",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "77",PAN_VNOMBRE:"Carteras",PAN_IID_PANTALLA_PADRE:"72",PAN_INIVEL:"2",PAN_IORDEN:"2",PAN_VRUTA:"Carteras",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "78",PAN_VNOMBRE:"Cartera vs razón social",PAN_IID_PANTALLA_PADRE:"72",PAN_INIVEL:"2",PAN_IORDEN:"3",PAN_VRUTA:"CarteraRazonSocial",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "79",PAN_VNOMBRE:"Despachos",PAN_IID_PANTALLA_PADRE:"72",PAN_INIVEL:"2",PAN_IORDEN:"4",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "80",PAN_VNOMBRE:"Agregar Despachos",PAN_IID_PANTALLA_PADRE:"79",PAN_INIVEL:"3",PAN_IORDEN:"1",PAN_VRUTA:"Despachos",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "81",PAN_VNOMBRE:"Modificar Despachos",PAN_IID_PANTALLA_PADRE:"79",PAN_INIVEL:"3",PAN_IORDEN:"2",PAN_VRUTA:"Modificar_Despachos",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "82",PAN_VNOMBRE:"Crear Despacho",PAN_IID_PANTALLA_PADRE:"79",PAN_INIVEL:"3",PAN_IORDEN:"3",PAN_VRUTA:"Agregar",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "83",PAN_VNOMBRE:"Distrito",PAN_IID_PANTALLA_PADRE:"72",PAN_INIVEL:"2",PAN_IORDEN:"5",PAN_VRUTA:"Distrito",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "87",PAN_VNOMBRE:"División",PAN_IID_PANTALLA_PADRE:"72",PAN_INIVEL:"2",PAN_IORDEN:"6",PAN_VRUTA:"Divicion",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "91",PAN_VNOMBRE:"Gastos judiciales",PAN_IID_PANTALLA_PADRE:"72",PAN_INIVEL:"2",PAN_IORDEN:"7",PAN_VRUTA:"Gastosjudiciales",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "92",PAN_VNOMBRE:"Orden de gestor",PAN_IID_PANTALLA_PADRE:"72",PAN_INIVEL:"2",PAN_IORDEN:"8",PAN_VRUTA:"Catalogo/OrdenColoniaGestor",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "93",PAN_VNOMBRE:"Solvente para legal",PAN_IID_PANTALLA_PADRE:"72",PAN_INIVEL:"2",PAN_IORDEN:"9",PAN_VRUTA:"solventeLegal",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "94",PAN_VNOMBRE:"Sucursal",PAN_IID_PANTALLA_PADRE:"72",PAN_INIVEL:"2",PAN_IORDEN:"10",PAN_VRUTA:"Sucursal",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "98",PAN_VNOMBRE:"Tokens",PAN_IID_PANTALLA_PADRE:"72",PAN_INIVEL:"2",PAN_IORDEN:"11",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "99",PAN_VNOMBRE:"Asignar Tokens",PAN_IID_PANTALLA_PADRE:"98",PAN_INIVEL:"3",PAN_IORDEN:"1",PAN_VRUTA:"AsignarTokens",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "100",PAN_VNOMBRE:"Reasignar Tokens",PAN_IID_PANTALLA_PADRE:"98",PAN_INIVEL:"3",PAN_IORDEN:"2",PAN_VRUTA:"ReasignarTokens",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "101",PAN_VNOMBRE:"Activar/desactivar Tokens",PAN_IID_PANTALLA_PADRE:"98",PAN_INIVEL:"3",PAN_IORDEN:"3",PAN_VRUTA:"ActivarDesactivarTokens",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "102",PAN_VNOMBRE:"Desasignar Tokens",PAN_IID_PANTALLA_PADRE:"98",PAN_INIVEL:"3",PAN_IORDEN:"4",PAN_VRUTA:"DesasignarTokens",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "103",PAN_VNOMBRE:"Usuarios",PAN_IID_PANTALLA_PADRE:"72",PAN_INIVEL:"2",PAN_IORDEN:"12",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "104",PAN_VNOMBRE:"Agregar Usuarios",PAN_IID_PANTALLA_PADRE:"103",PAN_INIVEL:"3",PAN_IORDEN:"1",PAN_VRUTA:"Catalogo/Usuarios/Agregar",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "105",PAN_VNOMBRE:"Modificar Usuarios",PAN_IID_PANTALLA_PADRE:"103",PAN_INIVEL:"3",PAN_IORDEN:"2",PAN_VRUTA:"Catalogo/Usuarios/Modificar",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "106",PAN_VNOMBRE:"Borrar Usuarios",PAN_IID_PANTALLA_PADRE:"103",PAN_INIVEL:"3",PAN_IORDEN:"3",PAN_VRUTA:"Catalogo/Usuarios/Eliminar",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "107",PAN_VNOMBRE:"Visitadores",PAN_IID_PANTALLA_PADRE:"72",PAN_INIVEL:"2",PAN_IORDEN:"13",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "108",PAN_VNOMBRE:"Agregar Visitadores",PAN_IID_PANTALLA_PADRE:"107",PAN_INIVEL:"3",PAN_IORDEN:"1",PAN_VRUTA:"Catalogo/Visitadores/Agregar",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "109",PAN_VNOMBRE:"Modificar Visitadores",PAN_IID_PANTALLA_PADRE:"107",PAN_INIVEL:"3",PAN_IORDEN:"2",PAN_VRUTA:"Catalogo/Visitadores/Actualizar",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "110",PAN_VNOMBRE:"Borrar Visitadores",PAN_IID_PANTALLA_PADRE:"107",PAN_INIVEL:"3",PAN_IORDEN:"3",PAN_VRUTA:"Catalogo/Visitadores/Eliminar",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "111",PAN_VNOMBRE:"Folios Calle-Legal",PAN_IID_PANTALLA_PADRE:"55",PAN_INIVEL:"2",PAN_IORDEN:"4",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "112",PAN_VNOMBRE:"Agregar Folio",PAN_IID_PANTALLA_PADRE:"111",PAN_INIVEL:"3",PAN_IORDEN:"1",PAN_VRUTA:"folioaltaCL",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "113",PAN_VNOMBRE:"Modificar Folio",PAN_IID_PANTALLA_PADRE:"111",PAN_INIVEL:"3",PAN_IORDEN:"2",PAN_VRUTA:"foliomodCL",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "114",PAN_VNOMBRE:"Consultar Folio",PAN_IID_PANTALLA_PADRE:"111",PAN_INIVEL:"3",PAN_IORDEN:"3",PAN_VRUTA:"folioconCL",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "115",PAN_VNOMBRE:"Confirmar Folios",PAN_IID_PANTALLA_PADRE:"55",PAN_INIVEL:"2",PAN_IORDEN:"5",PAN_VRUTA:"consultafolios",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "116",PAN_VNOMBRE:"Asignacion y Consulta de Folios",PAN_IID_PANTALLA_PADRE:"55",PAN_INIVEL:"2",PAN_IORDEN:"6",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "117",PAN_VNOMBRE:"Agregar",PAN_IID_PANTALLA_PADRE:"116",PAN_INIVEL:"3",PAN_IORDEN:"1",PAN_VRUTA:"asign_cons_addfolios",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "118",PAN_VNOMBRE:"Modificar",PAN_IID_PANTALLA_PADRE:"116",PAN_INIVEL:"3",PAN_IORDEN:"2",PAN_VRUTA:"asign_cons_modfolios",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "119",PAN_VNOMBRE:"Consultar",PAN_IID_PANTALLA_PADRE:"116",PAN_INIVEL:"3",PAN_IORDEN:"3",PAN_VRUTA:"asign_cons_getfolios",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "120",PAN_VNOMBRE:"Impresion de avisos",PAN_IID_PANTALLA_PADRE:"22",PAN_INIVEL:"2",PAN_IORDEN:"11",PAN_VRUTA:"ImpresionAvisosLegal",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "121",PAN_VNOMBRE:"Zonificacion",PAN_IID_PANTALLA_PADRE:"22",PAN_INIVEL:"2",PAN_IORDEN:"12",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "122",PAN_VNOMBRE:"Agregar Zonificación",PAN_IID_PANTALLA_PADRE:"121",PAN_INIVEL:"3",PAN_IORDEN:"1",PAN_VRUTA:"ZonificacionAgregarLegal",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "123",PAN_VNOMBRE:"Modificar Zonificación",PAN_IID_PANTALLA_PADRE:"121",PAN_INIVEL:"3",PAN_IORDEN:"2",PAN_VRUTA:"ZonificacionModificarLegal",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "124",PAN_VNOMBRE:"Borrar Zonificación",PAN_IID_PANTALLA_PADRE:"121",PAN_INIVEL:"3",PAN_IORDEN:"3",PAN_VRUTA:"ZonificacionBorrarLegal",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "126",PAN_VNOMBRE:"Formatos",PAN_IID_PANTALLA_PADRE:"",PAN_INIVEL:"1",PAN_IORDEN:"3",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "127",PAN_VNOMBRE:"Call Center",PAN_IID_PANTALLA_PADRE:"126",PAN_INIVEL:"2",PAN_IORDEN:"1",PAN_VRUTA:"FormatosCallCenter",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "128",PAN_VNOMBRE:"Calle",PAN_IID_PANTALLA_PADRE:"126",PAN_INIVEL:"2",PAN_IORDEN:"2",PAN_VRUTA:"FormatosCalle",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "129",PAN_VNOMBRE:"Legal",PAN_IID_PANTALLA_PADRE:"126",PAN_INIVEL:"2",PAN_IORDEN:"3",PAN_VRUTA:"FormatosLegal",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "130",PAN_VNOMBRE:"Agrupacion de Zona",PAN_IID_PANTALLA_PADRE:"14",PAN_INIVEL:"3",PAN_IORDEN:"6",PAN_VRUTA:"Calle/Reingenieria/AgrupacionZona",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "131",PAN_VNOMBRE:"Parametrizacion",PAN_IID_PANTALLA_PADRE:"55",PAN_INIVEL:"2",PAN_IORDEN:"7",PAN_VRUTA:"Parametrizacion",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "132",PAN_VNOMBRE:"Agrupacion de Zona",PAN_IID_PANTALLA_PADRE:"34",PAN_INIVEL:"3",PAN_IORDEN:"6",PAN_VRUTA:"Legal/Reingenieria/AgrupacionZona",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "133",PAN_VNOMBRE:"Envios",PAN_IID_PANTALLA_PADRE:"3",PAN_INIVEL:"2",PAN_IORDEN:"12",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "134",PAN_VNOMBRE:"Envios SMS",PAN_IID_PANTALLA_PADRE:"133",PAN_INIVEL:"3",PAN_IORDEN:"1",PAN_VRUTA:"EnvioSMS",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "135",PAN_VNOMBRE:"Balanceo",PAN_IID_PANTALLA_PADRE:"22",PAN_INIVEL:"2",PAN_IORDEN:"12",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "136",PAN_VNOMBRE:"Visitadores",PAN_IID_PANTALLA_PADRE:"135",PAN_INIVEL:"3",PAN_IORDEN:"1",PAN_VRUTA:"BalanceoVisitadores",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "137",PAN_VNOMBRE:"Orden de gestor",PAN_IID_PANTALLA_PADRE:"135",PAN_INIVEL:"3",PAN_IORDEN:"2",PAN_VRUTA:"BalanceoOrden_gestor",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "138",PAN_VNOMBRE:"Asesores colonia",PAN_IID_PANTALLA_PADRE:"135",PAN_INIVEL:"3",PAN_IORDEN:"3",PAN_VRUTA:"BalanceoAsesorescolonia",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "139",PAN_VNOMBRE:"Gestión de Incidencias",PAN_IID_PANTALLA_PADRE:"",PAN_INIVEL:"1",PAN_IORDEN:"3",PAN_VRUTA:"GestionIncidencias",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "140",PAN_VNOMBRE:"Alta de SMS",PAN_IID_PANTALLA_PADRE:"133",PAN_INIVEL:"3",PAN_IORDEN:"2",PAN_VRUTA:"AltaSMS",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "141",PAN_VNOMBRE:"Texto de Aviso Calle",PAN_IID_PANTALLA_PADRE:"3",PAN_INIVEL:"2",PAN_IORDEN:"14",PAN_VRUTA:"TextoDeAvisoscalle",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "142",PAN_VNOMBRE:"Desactivar Sesión",PAN_IID_PANTALLA_PADRE:"72",PAN_INIVEL:"2",PAN_IORDEN:"13",PAN_VRUTA:"DesactivarSesionUsuario",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "143",PAN_VNOMBRE:"Texto de Aviso Legal",PAN_IID_PANTALLA_PADRE:"22",PAN_INIVEL:"2",PAN_IORDEN:"14",PAN_VRUTA:"TextoDeAvisoslegal",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "144",PAN_VNOMBRE:"Simulacros Reingenieria",PAN_IID_PANTALLA_PADRE:"72",PAN_INIVEL:"2",PAN_IORDEN:"14",PAN_VRUTA:"#",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "145",PAN_VNOMBRE:"Simulacro Calle",PAN_IID_PANTALLA_PADRE:"144",PAN_INIVEL:"3",PAN_IORDEN:"1",PAN_VRUTA:"Calle/Reingenieria/Simulacro_CI",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "146",PAN_VNOMBRE:"Gestores Problema",PAN_IID_PANTALLA_PADRE:"72",PAN_INIVEL:"2",PAN_IORDEN:"14",PAN_VRUTA:"GestoresProblema",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "147",PAN_VNOMBRE:"Reingenieria Conf",PAN_IID_PANTALLA_PADRE:"55",PAN_INIVEL:"2",PAN_IORDEN:"7",PAN_VRUTA:"Configuracion",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"},
+{PAN_IID_PANTALLA: "148",PAN_VNOMBRE:"Prioridades",PAN_IID_PANTALLA_PADRE:"55",PAN_INIVEL:"2",PAN_IORDEN:"8",PAN_VRUTA:"Prioridades",PAN_VPARAMETROS:"",PAN_VESTATUS:"A"}]
+
+//recorre columna
+$.each(miJSON, function(i,item){		
+	if(item.PAN_INIVEL==1){	
+		$(document).ready(function(){
+			if(item.PAN_VRUTA!="#"){
+				console.log("°"+item.PAN_VNOMBRE);
+				//$("#menu").append('<li class="" id="item@obj.getPantalla"><a href="#" id="@obj.getRuta" name="@obj.getTitulomenu"  class="dropdown-toggle" onclick="rutamenu(this)"><i class="menu-icon fa fa-@obj.getRutaicono"></i><span class="menu-text">@obj.getTitulomenu</span><b class=""></b></a><b class="arrow"></b><ul id="menu1" class="submenu"></ul></li>');
+			}else{
+				console.log("°"+item.PAN_VNOMBRE);
+				//$("#menu").append('<li class="" id="item@obj.getPantalla"><a href="#" id="@obj.getRuta" name="@obj.getTitulomenu"  class="dropdown-toggle" onclick="rutamenu(this)"><i class="menu-icon fa fa-@obj.getRutaicono"></i><span class="menu-text">@obj.getTitulomenu</span><b class="arrow fa fa-angle-down"></b></a><b class="arrow"></b><ul id="menu1" class="submenu"></ul></li>');
+			}
+			});
+	}		
+	
+	if(item.PAN_INIVEL==2){	
+		$(document).ready(function(){
+			if(item.PAN_VRUTA!="#"){
+				console.log("---"+item.PAN_VNOMBRE);
+				//$("#item@obj.getPadre #menu1").append('<li id="item@obj.getPantalla"> <a href="#" id="@obj.getRuta" name="@obj.getTitulomenu"  class="dropdown-toggle" onclick="rutamenu(this)"><i class="fa fa-@obj.getRutaicono"></i><span class="menu-text">@obj.getTitulomenu</span><b class=""></b></a><b class="arrow"></b><ul id="menu2" class="submenu"></ul></li>');
+			}else{
+				console.log("---"+item.PAN_VNOMBRE);
+			   //$("#item@obj.getPadre #menu1").append('<li id="item@obj.getPantalla"> <a href="#" id="@obj.getRuta" name="@obj.getTitulomenu"  class="dropdown-toggle" onclick="rutamenu(this)"><i class="fa fa-@obj.getRutaicono"></i><span class="menu-text">@obj.getTitulomenu</span><b class="arrow fa fa-angle-down"></b></a><b class="arrow"></b><ul id="menu2" class="submenu"></ul></li>');
+			}
+		});									
+	}		
+
+
+	if(item.PAN_INIVEL==3){		
+		$(document).ready(function(){    			         				
+			console.log("|||---"+item.PAN_VNOMBRE);
+			//$("#item@obj.getPadre #menu2").append('<li class=""><a href="#" id="@obj.getRuta" onclick="rutamenu(this)" ><i class="fa fa-@obj.getRutaicono"></i>@obj.getTitulomenu</a><b class="arrow"></b></li>');
+		});				
+	}
+
+});
+
+</script>
+
+
+<div class="container">
+  <h2>Form Validation</h2>
+  <p>In this example, we use <code>.needs-validation</code>, which will add the validation effect AFTER the form has been submitting (if there's anything missing).</p>
+  <p>Try to submit this form before filling out the input fields, to see the effect.</p>
+  <form action="/action_page.php" class="needs-validation" novalidate>
+    <div class="form-group">
+      <label for="uname">Username:</label>
+      <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Please fill out this field.</div>
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Please fill out this field.</div>
+    </div>
+    <div class="form-group form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" name="remember" required> I agree on blabla.
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Check this checkbox to continue.</div>
+      </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+	<table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Tiger Nixon</td>
+                <td>System Architect</td>
+                <td>Edinburgh</td>
+                <td>61</td>
+                <td>2011/04/25</td>
+                <td>$320,800</td>
+            </tr>
+            <tr>
+                <td>Garrett Winters</td>
+                <td>Accountant</td>
+                <td>Tokyo</td>
+                <td>63</td>
+                <td>2011/07/25</td>
+                <td>$170,750</td>
+            </tr>
+            <tr>
+                <td>Ashton Cox</td>
+                <td>Junior Technical Author</td>
+                <td>San Francisco</td>
+                <td>66</td>
+                <td>2009/01/12</td>
+                <td>$86,000</td>
+            </tr>
+            <tr>
+                <td>Cedric Kelly</td>
+                <td>Senior Javascript Developer</td>
+                <td>Edinburgh</td>
+                <td>22</td>
+                <td>2012/03/29</td>
+                <td>$433,060</td>
+            </tr>
+            <tr>
+                <td>Airi Satou</td>
+                <td>Accountant</td>
+                <td>Tokyo</td>
+                <td>33</td>
+                <td>2008/11/28</td>
+                <td>$162,700</td>
+            </tr>
+            <tr>
+                <td>Brielle Williamson</td>
+                <td>Integration Specialist</td>
+                <td>New York</td>
+                <td>61</td>
+                <td>2012/12/02</td>
+                <td>$372,000</td>
+            </tr>
+            <tr>
+                <td>Herrod Chandler</td>
+                <td>Sales Assistant</td>
+                <td>San Francisco</td>
+                <td>59</td>
+                <td>2012/08/06</td>
+                <td>$137,500</td>
+            </tr>
+            <tr>
+                <td>Rhona Davidson</td>
+                <td>Integration Specialist</td>
+                <td>Tokyo</td>
+                <td>55</td>
+                <td>2010/10/14</td>
+                <td>$327,900</td>
+            </tr>
+            <tr>
+                <td>Colleen Hurst</td>
+                <td>Javascript Developer</td>
+                <td>San Francisco</td>
+                <td>39</td>
+                <td>2009/09/15</td>
+                <td>$205,500</td>
+            </tr>
+            <tr>
+                <td>Sonya Frost</td>
+                <td>Software Engineer</td>
+                <td>Edinburgh</td>
+                <td>23</td>
+                <td>2008/12/13</td>
+                <td>$103,600</td>
+            </tr>
+            <tr>
+                <td>Jena Gaines</td>
+                <td>Office Manager</td>
+                <td>London</td>
+                <td>30</td>
+                <td>2008/12/19</td>
+                <td>$90,560</td>
+            </tr>
+            <tr>
+                <td>Quinn Flynn</td>
+                <td>Support Lead</td>
+                <td>Edinburgh</td>
+                <td>22</td>
+                <td>2013/03/03</td>
+                <td>$342,000</td>
+            </tr>
+            <tr>
+                <td>Charde Marshall</td>
+                <td>Regional Director</td>
+                <td>San Francisco</td>
+                <td>36</td>
+                <td>2008/10/16</td>
+                <td>$470,600</td>
+            </tr>
+            <tr>
+                <td>Haley Kennedy</td>
+                <td>Senior Marketing Designer</td>
+                <td>London</td>
+                <td>43</td>
+                <td>2012/12/18</td>
+                <td>$313,500</td>
+            </tr>
+            <tr>
+                <td>Tatyana Fitzpatrick</td>
+                <td>Regional Director</td>
+                <td>London</td>
+                <td>19</td>
+                <td>2010/03/17</td>
+                <td>$385,750</td>
+            </tr>
+            <tr>
+                <td>Michael Silva</td>
+                <td>Marketing Designer</td>
+                <td>London</td>
+                <td>66</td>
+                <td>2012/11/27</td>
+                <td>$198,500</td>
+            </tr>
+            <tr>
+                <td>Paul Byrd</td>
+                <td>Chief Financial Officer (CFO)</td>
+                <td>New York</td>
+                <td>64</td>
+                <td>2010/06/09</td>
+                <td>$725,000</td>
+            </tr>
+            <tr>
+                <td>Gloria Little</td>
+                <td>Systems Administrator</td>
+                <td>New York</td>
+                <td>59</td>
+                <td>2009/04/10</td>
+                <td>$237,500</td>
+            </tr>
+            <tr>
+                <td>Bradley Greer</td>
+                <td>Software Engineer</td>
+                <td>London</td>
+                <td>41</td>
+                <td>2012/10/13</td>
+                <td>$132,000</td>
+            </tr>
+            <tr>
+                <td>Dai Rios</td>
+                <td>Personnel Lead</td>
+                <td>Edinburgh</td>
+                <td>35</td>
+                <td>2012/09/26</td>
+                <td>$217,500</td>
+            </tr>
+            <tr>
+                <td>Jenette Caldwell</td>
+                <td>Development Lead</td>
+                <td>New York</td>
+                <td>30</td>
+                <td>2011/09/03</td>
+                <td>$345,000</td>
+            </tr>
+            <tr>
+                <td>Yuri Berry</td>
+                <td>Chief Marketing Officer (CMO)</td>
+                <td>New York</td>
+                <td>40</td>
+                <td>2009/06/25</td>
+                <td>$675,000</td>
+            </tr>
+            <tr>
+                <td>Caesar Vance</td>
+                <td>Pre-Sales Support</td>
+                <td>New York</td>
+                <td>21</td>
+                <td>2011/12/12</td>
+                <td>$106,450</td>
+            </tr>
+            <tr>
+                <td>Doris Wilder</td>
+                <td>Sales Assistant</td>
+                <td>Sydney</td>
+                <td>23</td>
+                <td>2010/09/20</td>
+                <td>$85,600</td>
+            </tr>
+            <tr>
+                <td>Angelica Ramos</td>
+                <td>Chief Executive Officer (CEO)</td>
+                <td>London</td>
+                <td>47</td>
+                <td>2009/10/09</td>
+                <td>$1,200,000</td>
+            </tr>
+            <tr>
+                <td>Gavin Joyce</td>
+                <td>Developer</td>
+                <td>Edinburgh</td>
+                <td>42</td>
+                <td>2010/12/22</td>
+                <td>$92,575</td>
+            </tr>
+            <tr>
+                <td>Jennifer Chang</td>
+                <td>Regional Director</td>
+                <td>Singapore</td>
+                <td>28</td>
+                <td>2010/11/14</td>
+                <td>$357,650</td>
+            </tr>
+            <tr>
+                <td>Brenden Wagner</td>
+                <td>Software Engineer</td>
+                <td>San Francisco</td>
+                <td>28</td>
+                <td>2011/06/07</td>
+                <td>$206,850</td>
+            </tr>
+            <tr>
+                <td>Fiona Green</td>
+                <td>Chief Operating Officer (COO)</td>
+                <td>San Francisco</td>
+                <td>48</td>
+                <td>2010/03/11</td>
+                <td>$850,000</td>
+            </tr>
+            <tr>
+                <td>Shou Itou</td>
+                <td>Regional Marketing</td>
+                <td>Tokyo</td>
+                <td>20</td>
+                <td>2011/08/14</td>
+                <td>$163,000</td>
+            </tr>
+            <tr>
+                <td>Michelle House</td>
+                <td>Integration Specialist</td>
+                <td>Sydney</td>
+                <td>37</td>
+                <td>2011/06/02</td>
+                <td>$95,400</td>
+            </tr>
+            <tr>
+                <td>Suki Burks</td>
+                <td>Developer</td>
+                <td>London</td>
+                <td>53</td>
+                <td>2009/10/22</td>
+                <td>$114,500</td>
+            </tr>
+            <tr>
+                <td>Prescott Bartlett</td>
+                <td>Technical Author</td>
+                <td>London</td>
+                <td>27</td>
+                <td>2011/05/07</td>
+                <td>$145,000</td>
+            </tr>
+            <tr>
+                <td>Gavin Cortez</td>
+                <td>Team Leader</td>
+                <td>San Francisco</td>
+                <td>22</td>
+                <td>2008/10/26</td>
+                <td>$235,500</td>
+            </tr>
+            <tr>
+                <td>Martena Mccray</td>
+                <td>Post-Sales support</td>
+                <td>Edinburgh</td>
+                <td>46</td>
+                <td>2011/03/09</td>
+                <td>$324,050</td>
+            </tr>
+            <tr>
+                <td>Unity Butler</td>
+                <td>Marketing Designer</td>
+                <td>San Francisco</td>
+                <td>47</td>
+                <td>2009/12/09</td>
+                <td>$85,675</td>
+            </tr>
+            <tr>
+                <td>Howard Hatfield</td>
+                <td>Office Manager</td>
+                <td>San Francisco</td>
+                <td>51</td>
+                <td>2008/12/16</td>
+                <td>$164,500</td>
+            </tr>
+            <tr>
+                <td>Hope Fuentes</td>
+                <td>Secretary</td>
+                <td>San Francisco</td>
+                <td>41</td>
+                <td>2010/02/12</td>
+                <td>$109,850</td>
+            </tr>
+            <tr>
+                <td>Vivian Harrell</td>
+                <td>Financial Controller</td>
+                <td>San Francisco</td>
+                <td>62</td>
+                <td>2009/02/14</td>
+                <td>$452,500</td>
+            </tr>
+            <tr>
+                <td>Timothy Mooney</td>
+                <td>Office Manager</td>
+                <td>London</td>
+                <td>37</td>
+                <td>2008/12/11</td>
+                <td>$136,200</td>
+            </tr>
+            <tr>
+                <td>Jackson Bradshaw</td>
+                <td>Director</td>
+                <td>New York</td>
+                <td>65</td>
+                <td>2008/09/26</td>
+                <td>$645,750</td>
+            </tr>
+            <tr>
+                <td>Olivia Liang</td>
+                <td>Support Engineer</td>
+                <td>Singapore</td>
+                <td>64</td>
+                <td>2011/02/03</td>
+                <td>$234,500</td>
+            </tr>
+            <tr>
+                <td>Bruno Nash</td>
+                <td>Software Engineer</td>
+                <td>London</td>
+                <td>38</td>
+                <td>2011/05/03</td>
+                <td>$163,500</td>
+            </tr>
+            <tr>
+                <td>Sakura Yamamoto</td>
+                <td>Support Engineer</td>
+                <td>Tokyo</td>
+                <td>37</td>
+                <td>2009/08/19</td>
+                <td>$139,575</td>
+            </tr>
+            <tr>
+                <td>Thor Walton</td>
+                <td>Developer</td>
+                <td>New York</td>
+                <td>61</td>
+                <td>2013/08/11</td>
+                <td>$98,540</td>
+            </tr>
+            <tr>
+                <td>Finn Camacho</td>
+                <td>Support Engineer</td>
+                <td>San Francisco</td>
+                <td>47</td>
+                <td>2009/07/07</td>
+                <td>$87,500</td>
+            </tr>
+            <tr>
+                <td>Serge Baldwin</td>
+                <td>Data Coordinator</td>
+                <td>Singapore</td>
+                <td>64</td>
+                <td>2012/04/09</td>
+                <td>$138,575</td>
+            </tr>
+            <tr>
+                <td>Zenaida Frank</td>
+                <td>Software Engineer</td>
+                <td>New York</td>
+                <td>63</td>
+                <td>2010/01/04</td>
+                <td>$125,250</td>
+            </tr>
+            <tr>
+                <td>Zorita Serrano</td>
+                <td>Software Engineer</td>
+                <td>San Francisco</td>
+                <td>56</td>
+                <td>2012/06/01</td>
+                <td>$115,000</td>
+            </tr>
+            <tr>
+                <td>Jennifer Acosta</td>
+                <td>Junior Javascript Developer</td>
+                <td>Edinburgh</td>
+                <td>43</td>
+                <td>2013/02/01</td>
+                <td>$75,650</td>
+            </tr>
+            <tr>
+                <td>Cara Stevens</td>
+                <td>Sales Assistant</td>
+                <td>New York</td>
+                <td>46</td>
+                <td>2011/12/06</td>
+                <td>$145,600</td>
+            </tr>
+            <tr>
+                <td>Hermione Butler</td>
+                <td>Regional Director</td>
+                <td>London</td>
+                <td>47</td>
+                <td>2011/03/21</td>
+                <td>$356,250</td>
+            </tr>
+            <tr>
+                <td>Lael Greer</td>
+                <td>Systems Administrator</td>
+                <td>London</td>
+                <td>21</td>
+                <td>2009/02/27</td>
+                <td>$103,500</td>
+            </tr>
+            <tr>
+                <td>Jonas Alexander</td>
+                <td>Developer</td>
+                <td>San Francisco</td>
+                <td>30</td>
+                <td>2010/07/14</td>
+                <td>$86,500</td>
+            </tr>
+            <tr>
+                <td>Shad Decker</td>
+                <td>Regional Director</td>
+                <td>Edinburgh</td>
+                <td>51</td>
+                <td>2008/11/13</td>
+                <td>$183,000</td>
+            </tr>
+            <tr>
+                <td>Michael Bruce</td>
+                <td>Javascript Developer</td>
+                <td>Singapore</td>
+                <td>29</td>
+                <td>2011/06/27</td>
+                <td>$183,000</td>
+            </tr>
+            <tr>
+                <td>Donna Snider</td>
+                <td>Customer Support</td>
+                <td>New York</td>
+                <td>27</td>
+                <td>2011/01/25</td>
+                <td>$112,000</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+<canvas id="myChart" width="400" height="400"></canvas>
+
+
+<script>
+// Disable form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Get the forms we want to add validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+
+	
+
+
+function getValDraw(valor){
+    datodraw(valor);
+}
+
+
+	 function datodraw(valor){
+    var id = $(valor).attr("id");
+    var num = $("#"+id).val();
+    if(num > 0){
+        if(id != "datodraw2" && id != "datodraw3"){
+            table.page(parseInt(num-1)).draw(false);
+        }else if(id == "datodraw2"){
+            tableVisitadorActualizar.page(parseInt(num-1)).draw(false);
+        }else if(id == "datodraw3"){
+            tableVisitadorEliminar.page(parseInt(num-1)).draw(false);
+        }
+       $("#"+id).val("");
+    }else{
+        alert("Favor de ingresar un valor mayor a 0.");
+        $("#"+id).val("");
+    }
+};
+
+   var table;
+   inicializarTabla();
+	function inicializarTabla(){
+	table = $('#example').DataTable({
+			  //"ordering": true,
+	          //"bFilter": true,
+			  language: {
+              				"sProcessing":     "Procesando...",
+              				"sLengthMenu":     "Mostrar _MENU_ registros",
+              				"sZeroRecords":    "No se encontraron resultados",
+              				"sEmptyTable":     "Ningun dato disponible en esta tabla",
+              				"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              				"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+              				"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+              				"sInfoPostFix":    "",
+              				"sSearch":         "Buscar:",
+              				"sUrl":            "",
+              				"sInfoThousands":  ",",
+              				"sLoadingRecords": "Cargando...",
+              				"oPaginate": {
+              					"sFirst":    "Primero",
+              					"sLast":     "�ltimo",
+              					"sNext":     "Siguiente",
+              					"sPrevious": "Anterior"
+              				},
+              				"oAria": {
+              					"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+              					"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              				}
+              			}
+						
+						/*,
+			  columns: [
+                  {"data": "name_zon" },
+                  {"data": "account_ico" },
+                  {"data": "totaldebt_dco" },
+                  {"data": "lastdebt_dco" },
+                  {"data": "colonia_ico" },
+                  {"data": "zip_ico" },
+                  {"data": "status_rv" },
+                  {"data": "substatus_ico" },
+                  {"data": "aviso_ico" },
+                  {"data": "tiene_tarjetaasoc" },
+                  {"data": "aviso" }
+                    ]
+					*/
+		  });	
+		   cajaText();		   		  
+		  }
+		  
+		function cajaText(){
+			console.log("datodraw----->"+$("#datodraw").length);
+			if($("#datodraw").length==0){
+			//dataTables_paginate
+			$(".dataTables_info").before('<input type="text" id="datodraw" class="datodraw form-control input-sm col-sm-1" style="float:right" placeholder="No. pag" size="2" onchange="getValDraw(this)">');
+			}
+		}
+
+		//recorrer datos seleccionados
+		/*
+		for (var i = 0; i < table.rows('.selected').data().length; i++) {
+			var sub = table.rows('.selected').data()[i].account_ico;
+			var aviso_ruta = table.rows('.selected').data()[i].aviso_ico;
+			var numtienda = table.rows('.selected').data()[i].tiene_tarjetaasoc;
+			var account = sub.substr(2);
+			saveAviso(account, aviso_ruta, numtienda);				
+		}
+		*/
+		//agregar resruesta del json
+		/*
+		$.getJSON(URLCarga, null, function (json) {
+			   table.clear();
+			   table.rows.add(json);
+			   table.draw();
+		});
+		*/
+		
+		// Any of the following formats may be used
+var ctx = document.getElementById('myChart');
+var ctx = document.getElementById('myChart').getContext('2d');
+var ctx = $('#myChart');
+var ctx = 'myChart';
+		
+$(document).ready(function() {
+	
+		  
+		  
+} );
+
+var ctx = document.getElementById('myChart');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+
+</script>
+
+</body>
+</html>
