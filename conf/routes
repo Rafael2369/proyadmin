@@ -1,0 +1,53 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+#GET     /                           controllers.HomeController.index
+GET     /Oferta                     controllers.HomeController.Oferta
+GET     /Nuevo                     controllers.HomeController.Nuevo
+GET     /Venta	                    controllers.CtrlVenta.venta
+GET     /Producto                     controllers.CtrlProducto.Producto
+GET     /getProducto                    controllers.CtrlProducto.getProducto(req: Request)
+GET     /findCodigoBarra                    controllers.CtrlProducto.findCodigoBarra(req: Request)
+
+GET     /addProducto                    controllers.CtrlProducto.addProducto(req: Request)
+GET     /editProducto                    controllers.CtrlProducto.editProducto(req: Request)
+GET     /delProducto                    controllers.CtrlProducto.delproducto(req: Request)
+GET     /getPersona                     controllers.CtrlPersona.getPersonas()
+GET     /getUnidadMedida                     controllers.CtrlUnidadMedida.getUnidadMedidas()
+GET     /getMarca                     controllers.CtrlMarca.getMarcas()
+GET     /getPresentacion                    controllers.CtrlPresentacion.getPresentacions()
+GET     /getCategorias                     controllers.CtrlCategoria.getCategorias()
+GET     /getlistCategoriaArea                     controllers.CtrlCategoria.listCategoriaArea()
+GET     /persona                     controllers.CtrlPersona.persona()
+GET     /guardarpersona                     controllers.CtrlPersona.guardarPersona(req: Request)
+GET     /personafindId                     controllers.CtrlPersona.findId(req: Request)
+GET     /guardarMovimientos                     controllers.CtrlMovimiento.guardarMovimiento(req:Request)
+GET     /getMovimientos                     controllers.CtrlMovimiento.getMovimientos()
+GET     /findIdMovimientos                     controllers.CtrlMovimiento.findId(req:Request)
+
+GET     /guardarDetalle                     controllers.CtrlDetalle.guardarDetalle(req:Request)
+GET     /getDetalles                     controllers.CtrlDetalle.getDetalles()
+
+GET     /listmovimientoDetalle                     controllers.CtrlDetalle.listmovimientoDetalle(req:Request)
+
+         
+GET     /getPantalla                     controllers.CtrlPantalla.getPantallas(req: Request)
+GET     /getUsuario                     controllers.CtrlUsuario.getUsuarios()
+GET    /findColonia                    controllers.CtrlUsuario.findColonia(req: Request)
+GET    /FindId                     controllers.CtrlUsuario.FindId(req: Request)
+GET    /login                      controllers.CtrlUsuario.login(req: Request)
+GET    /admin                      controllers.CtrlUsuario.admin()
+GET    /Usuario                      controllers.CtrlUsuario.usuario()
+GET    /guardarusuario                      controllers.CtrlUsuario.guardarUsuario(req: Request)
+
+GET    /Cliente                      controllers.CtrlCliente.cliente()
+GET    /factura                    controllers.CtrlCliente.factura()
+
+#GET    /guardarCliente     controllers.CtrlCliente.addCliente(req: Request)
+GET    /Vendedor                     controllers.CtrlVendedor.vendedor()
+
+GET     /                    controllers.CtrlPersona.index(req: Request)
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

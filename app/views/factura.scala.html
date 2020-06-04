@@ -1,0 +1,134 @@
+
+<div class="container demo">
+		<div class="row">
+			<div class="col-xs-1">
+				<h6><a href=" "><img alt="" src="image/logo.png" />  </a>
+				</h6>
+				
+			</div>
+			<div class="col-xs-5">
+				<h5><a href=" "><img alt="" /> <p id="Emp_NOMBRE">[NOMBRE]</p>
+					<p id="Emp_COMPAÑIA">[COMPAÑIA]</p>
+					<p id="Emp_DIRECCION">[DIRECCI&Oacute;N]</p>
+					<p id="Emp_CIUDAD">[CIUDAD, COD POSTAL]</p>
+					<p id="Emp_TELEFONO">[TELEF&Oacute;NO]</p> </a>
+				</h5>
+			</div>
+			<div class="col-xs-6 text-right">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+							<h1>PEDIDO
+								<a href="#"></a>
+							</h1>
+							
+					</div>
+					<div class="panel-body">
+						<h4>PEDIDO Nº : 
+								<a href="#" id="MOV_ID"></a>
+						</h4>
+					</div>
+				</div>
+			</div>
+ 
+		<hr />
+ 
+			
+				<h1 style="text-align: center;">NOTA DE PEDIDO</h1> 
+			
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 id="MOV_FECHA">
+									</h4>
+								</div>
+						<div class="panel-body">
+						
+							
+								<h4>Comprador :  
+									<a href="#" id="NombreCliente">Nombres y apellidos</a>
+								</h4>
+					
+						</div>
+						</div>
+					</div>
+					
+				</div>
+
+<pre></pre>
+<table class="table table-bordered">
+	<tbody>
+		<tr>
+			<td rowspan="3" style="text-align: center;">
+				<p id="DIRECCION"></p>
+				<p id="CP"></p>
+				<p id="TELEFONO"></p>
+				<p id="REFENCIA"></p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<pre></pre>
+<table id="tablaFactura" class="table table-bordered">
+	<thead >
+		<tr >
+			<th style="text-align: center;">
+				<h4>Cantidad</h4>
+			</th>
+			<th style="text-align: center;">
+				<h4>Concepto</h4>
+			</th>
+			<th style="text-align: center;">
+				<h4>Precio unitario</h4>
+			</th>
+			<th style="text-align: center;">
+				<h4>Total</h4>
+			</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		
+		
+		
+	</tbody>
+</table>
+<table class="table table-bordered">
+	<tbody>
+		<tr >
+			<td colspan="3" style="text-align: right;">Total $.</td>
+			<td style="text-align: right;"><a href="#" id="MOV_TOTAL"> </a></td>
+		</tr>
+	</tbody>
+</table>
+	<div class="row">
+		<div class="col-xs-4">
+			<h1><a href=" "><img alt="" src="image/qr.png" /></a></h1>
+		</div>
+		<div class="col-xs-8">
+			<div class="panel panel-info"  style="text-align: right;">
+				<p> "LA ALTERACI&Oacute;N, FALSIFICACI&Oacute;N O COMERCIALIZACI&Oacute;N ILEGAL DE ESTE DOCUMENTO ESTA PENADO POR LA LEY"<p>
+			</div>
+		</div>
+	</div>
+		
+</div>
+</div>
+
+
+	  <div class="row">
+      <div class="one-half column">
+        <a id="basic" href="#" class="button button-primary">Print container</a>
+      </div>
+	  
+	  
+	   <script>
+    $('#basic').on("click", function () {
+		console.log("<----------|||||||||||------------->");
+      $('.demo').printThis({
+        base: "https://jasonday.github.io/printThis/"
+      });
+    });
+	</script>
+	
+

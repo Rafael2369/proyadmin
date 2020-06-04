@@ -1,0 +1,34 @@
+@(field: play.api.data.Field, label:String, args: (Symbol,Any)*)(implicit handler: FieldConstructor, lang: play.api.i18n.Lang)
+
+@**
+* Generate a hidden HTML input.
+*
+* Example:
+* {{{
+*   @inputHidden(field = myForm("name"), args = 'data-ref -> 0)
+* }}}
+*
+* @param field The form field.
+* @param args Set of extra attributes.
+* @param handler The field constructor.
+*@
+
+
+@id = @{ args.toMap.get('id).map(_.toString).getOrElse(field.id) }
+@inputType = @{ args.toMap.get('type).map(_.toString).getOrElse("Text") }
+@htmlArgs = @{ args.filter(arg => !arg._1.name.startsWith("_") && arg._1 != 'id).toMap.filter(_._1 != 'type) }
+<div class="row">
+    <div class="col-sm-1"><label>@label: </label>
+        <div id="titulotipopreguntaderes" class='col-sm-6'>
+        </div>
+
+    </div>
+
+<div class="col-sm-11">
+<textarea  id="@id" name="@field.name"  @toHtmlArgs(htmlArgs)>
+@field.value
+</textarea>
+
+
+</div>
+</div>
